@@ -73,18 +73,16 @@ mysql -u$MYSQL_USER -p$MYSQL_PASS -e "CREATE DATABASE IF NOT EXISTS $PROJECT_NAM
 echo "- Creating project user"
 mysql -u$MYSQL_USER -p$MYSQL_PASS -e "GRANT ALL ON $PROJECT_NAME.* TO '$PROJECT_NAME'@'localhost' IDENTIFIED BY '$PROJECT_NAME'"
 mysql -u$MYSQL_USER -p$MYSQL_PASS -e "FLUSH PRIVILEGES"
-if [ -f /vagrant/build/mysql/schema.sql ]; then
+if [[ -n $(find "/vagrant/build/mysql/schema.sql" -newermt "$LAST_PROVISIONED_AT") ]]; then
     echo "- Importing schema file"
     mysql -u$MYSQL_USER -p$MYSQL_PASS $PROJECT_NAME < /vagrant/build/mysql/schema.sql > /dev/null 2>&1
 fi
-if [ -f /vagrant/build/mysql/data.sql ]; then
-    if test `find "/vagrant/build/mysql/data.sql" -newermt "$LAST_PROVISIONED_AT"`; then
-        echo "- Importing data file"
-        mysql -u$MYSQL_USER -p$MYSQL_PASS -e "show tables" $PROJECT_NAME | while read table;
-            do mysql -u$MYSQL_USER -p$MYSQL_PASS -e "truncate table $table" $PROJECT_NAME;
-        done
-        mysql -u$MYSQL_USER -p$MYSQL_PASS $PROJECT_NAME < /vagrant/build/mysql/data.sql > /dev/null 2>&1
-    fi
+if [[ -n $(find "/vagrant/build/mysql/data.sql" -newermt "$LAST_PROVISIONED_AT") ]]; then
+    echo "- Importing data file"
+    mysql -u$MYSQL_USER -p$MYSQL_PASS -e "show tables" $PROJECT_NAME | while read table;
+        do mysql -u$MYSQL_USER -p$MYSQL_PASS -e "truncate table $table" $PROJECT_NAME;
+    done
+    mysql -u$MYSQL_USER -p$MYSQL_PASS $PROJECT_NAME < /vagrant/build/mysql/data.sql > /dev/null 2>&1
 fi
 
 echo "--------------------------------"
@@ -96,18 +94,13 @@ echo "- Installing Adminer"
 sudo mkdir -p /var/www/default/adminer
 sudo wget http://www.adminer.org/latest.php -O /var/www/default/adminer/index.php > /dev/null 2>&1
 cat << END > /etc/httpd/conf.d/adminer.conf
-<VirtualHost *:80>
-    ServerName adminer
-    Alias /adminer /var/www/default/adminer
-    <Directory "/var/www/default/adminer">
-        Options Indexes FollowSymLinks MultiViews
-        AllowOverride None
-        Order allow,deny
-        Allow from all
-    </Directory>
-    ErrorLog "/vagrant/log/adminer_error.log"
-    CustomLog "/vagrant/log/adminer_access.log" combined
-</VirtualHost>
+Alias /adminer /var/www/default/adminer
+<Directory "/var/www/default/adminer">
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride None
+    Order allow,deny
+    Allow from all
+</Directory>
 END
 echo "Restarting Apache"
 sudo service httpd restart > /dev/null 2>&1
