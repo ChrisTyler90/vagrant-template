@@ -1,0 +1,35 @@
+---
+config:
+    box: chef/centos-6.5-i386
+    box_url: https://atlas.hashicorp.com/chef/centos-6.5-i386
+    hostname: test.dev
+    network:
+        public_network: 0
+        private_network: 192.168.33.10
+        forwarded_port:
+            tcp80:
+                guest: '80'
+                host: '80'
+    apache:
+        modules:
+            - mod_ssl
+            - openssl
+    php:
+        version: php55w
+        modules:
+            - php55w-common
+            - php55w-mysql
+            - php55w-xmlrpc
+            - php55w-gd
+            - php55w-mbstring
+            - php55w-mcrypt
+            - php55w-pdo
+            - php55w-xml
+            - php55w-pecl-xdebug
+    mysql:
+        user: root
+        pass: root
+        sql_file: data.sql
+    tool:
+        - nano
+        - adminer
