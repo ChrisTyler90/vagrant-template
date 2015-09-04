@@ -14,9 +14,15 @@ cat << END > /etc/httpd/conf.d/000-default.conf
     ErrorLog "logs/error.log"
     CustomLog "logs/access.log" combined
 
+    <Directory "/vagrant/public">
+        AllowOverride All
+    </Directory>
+
     <IfModule mod_php5.c>
         AddType application/x-httpd-php .php
     </IfModule>
+
+    EnableSendfile off
 </VirtualHost>
 END
 
