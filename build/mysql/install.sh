@@ -2,6 +2,6 @@
 # MySQL Installation Script
 
 echo "- Installing MySQL"
-wget http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm -y
-sudo yum localinstall mysql-community-release-el6-*.noarch.rpm -y
-sudo yum install mysql-community-server -y
+wget http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm -y > /dev/null 2>&1
+sudo yum localinstall mysql-community-release-el6-*.noarch.rpm -y > /dev/null 2>&1
+sudo yum install mysql-community-server -y > /dev/null 2>&1
