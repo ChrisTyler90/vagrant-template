@@ -10,8 +10,9 @@ Vagrant.configure(2) do |config|
     ####################
     config.vm.box = "#{yaml_config['box']}"
     config.vm.box_url = "#{yaml_config['box_url']}"
-    if yaml_config['hostname'].to_s.strip.length != 0
-        config.vm.hostname = "#{yaml_config['hostname']}"
+
+    config.vm.define "#{yaml_config['hostname']}" do |node|
+        node.vm.hostname = "#{yaml_config['hostname']}"
     end
 
     if yaml_config['network']['private_network'].to_s != ''
@@ -89,7 +90,13 @@ Vagrant.configure(2) do |config|
     end
 
     ####################
-    # Vagrant Hostmanager
+    # Hostmanager
     ####################
-    config.vm.provision :hostmanager
+
+    if Vagrant.has_plugin?('vagrant-hostmanager')
+        config.hostmanager.enabled              = true
+        config.hostmanager.manage_host          = true
+        config.hostmanager.ignore_private_ip    = true
+        config.hostmanager.include_offline      = true
+    end
 end
