@@ -1,7 +1,7 @@
 ---
 config:
-    box: chef/centos-6.5-i386
-    box_url: https://atlas.hashicorp.com/chef/centos-6.5-i386
+    box: box-cutter/centos67
+    box_url: https://vagrantcloud.com/box-cutter/boxes/centos67
     hostname: test.dev
     network:
         public_network: 0
