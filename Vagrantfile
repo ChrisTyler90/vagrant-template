@@ -73,10 +73,12 @@ Vagrant.configure(2) do |config|
         s.args = "#{apache_modules}"
     end
 
+    sql_files = "#{yaml_config['mysql']['sql_file'].join(' ')}"
+    
     config.vm.provision "shell", run: "always" do |s|
         s.name = "MySQL Configure"
         s.path = "#{current_dir}/build/mysql/configure.sh"
-        s.args = "#{yaml_config['mysql']['user']} #{yaml_config['mysql']['pass']} #{yaml_config['mysql']['sql_file']}"
+        s.args = "#{yaml_config['mysql']['user']} #{yaml_config['mysql']['pass']} #{sql_files}"
     end
 
     ####################

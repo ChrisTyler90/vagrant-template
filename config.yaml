@@ -29,7 +29,9 @@ config:
     mysql:
         user: root
         pass: root
-        sql_file: data.sql
+        sql_file:
+            - schema.sql
+            - data.sql
     tool:
         - nano
         - adminer

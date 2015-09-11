@@ -2,6 +2,8 @@
 # Apache Installation Script
 
 echo "- Configuring Apache"
+# Stop the Apache service
+sudo apachectl stop > /dev/null 2>&1
 # Remove the default Apache log directory
 rm /etc/httpd/logs > /dev/null 2>&1
 # Link the logs directory to our own
@@ -28,4 +30,4 @@ END
 
 # Restart the Apache service
 echo "- Restarting Apache Service"
-sudo service httpd restart > /dev/null 2>&1
+sudo apachectl restart > /dev/null 2>&1
