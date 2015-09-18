@@ -16,4 +16,4 @@ done
 
 # Restart the Apache service
 echo "- Restarting Apache Service"
-sudo apachectl restart > /dev/null 2>&1
+sudo service httpd restart > /dev/null 2>&1
