@@ -33,15 +33,3 @@ cat << END > /etc/httpd/conf.d/000-default.conf
     EnableSendfile off
 </VirtualHost>
 END
-
-# Start the Apache service on 'vagrant-mounted'
-# http://stackoverflow.com/a/22763606
-cat << END > /etc/init/httpd.conf
-# start apache on vagrant mounted
-start on vagrant-mounted
-exec sudo service httpd start
-END
-
-# Start the Apache service
-echo "- Starting Apache Service"
-sudo service httpd start > /dev/null 2>&1

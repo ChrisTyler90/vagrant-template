@@ -2,8 +2,6 @@
 # MySQL Configuration Script
 
 echo "- Configuring MySQL"
-echo "  - Starting MySQL Service"
-service mysqld start > /dev/null 2>&1
 echo "  - Changing root user password"
 mysqladmin -u$1 password $2 > /dev/null 2>&1
 echo "  - Creating database"

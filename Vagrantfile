@@ -3,6 +3,8 @@ require 'yaml'
 current_dir = File.dirname(File.expand_path(__FILE__))
 configs     = YAML.load_file("#{current_dir}/config.yaml")
 yaml_config = configs['config']
+
+php_modules = "#{yaml_config['php']['modules'].join(' ')}"
 apache_modules = "#{yaml_config['apache']['modules'].join(' ')}"
 sql_files = "#{yaml_config['mysql']['sql_file'].join(' ')}"
 
@@ -37,7 +39,6 @@ Vagrant.configure(2) do |config|
     ####################
     # PHP
     ####################
-    php_modules = "#{yaml_config['php']['modules'].join(' ')}"
 
     config.vm.provision "shell", run: "once" do |s|
         s.name = "PHP Install"
@@ -62,6 +63,11 @@ Vagrant.configure(2) do |config|
         s.name = "MySQL Configure"
         s.path = "#{current_dir}/build/mysql/configure.sh"
         s.args = "#{yaml_config['mysql']['user']} #{yaml_config['mysql']['pass']}"
+    end
+    
+    config.vm.provision "shell", run: "always" do |s|
+        s.name = "MySQL Import"
+        s.path = "#{current_dir}/build/mysql/init.sh"
     end
     
     config.vm.provision "shell", run: "always" do |s|
@@ -93,6 +99,11 @@ Vagrant.configure(2) do |config|
     config.vm.provision "shell", run: "once" do |s|
         s.name = "Apache Configure"
         s.path = "#{current_dir}/build/apache/configure.sh"
+    end
+    
+    config.vm.provision "shell", run: "always" do |s|
+        s.name = "Apache Install"
+        s.path = "#{current_dir}/build/apache/init.sh"
     end
 
     ####################
