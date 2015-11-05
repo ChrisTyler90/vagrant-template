@@ -14,7 +14,3 @@ Alias /adminer /var/www/default/adminer
     Allow from all
 </Directory>
 END
-
-# Restart the Apache service
-echo "- Restarting Apache Service"
-sudo service httpd restart > /dev/null 2>&1

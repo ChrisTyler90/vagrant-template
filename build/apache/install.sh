@@ -11,7 +11,3 @@ do
     echo "  - $module"
     sudo yum install -y $module > /dev/null 2>&1
 done
-
-# Start the Apache service
-echo "- Restarting Apache Service"
-sudo service httpd restart > /dev/null 2>&1
