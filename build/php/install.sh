@@ -12,4 +12,4 @@ for module in ${@:2}
 do
     echo "  - $module"
     sudo yum install -y $module > /dev/null 2>&1
-done1
+done;
