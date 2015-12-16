@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # MySQL Configuration Script
 
-echo "- Starting MySQL Service"
-service mysqld start > /dev/null 2>&1
+echo "- Restarting MySQL Service"
+service mysqld restart > /dev/null 2>&1
