@@ -28,16 +28,44 @@ Temporary Items
 .Spotlight-V100
 .Trashes
 
-# Directories potentially created on remote AFP share
-
-#############
-## PHPStorm
-#############
-
-.idea/
-
 #############
 ## Vagrant
 #############
 
 .vagrant/
+build/mysql/imported-*
+
+#############
+## Temporary / Cache
+#############
+
+backup/
+cache/
+tmp/*
+log*/*
+*.log
+
+#############
+## PHPStorm
+#############
+
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/webServers.xml
+.idea/dictionaries/*
+
+#############
+## SASS/Compass
+#############
+
+.sass-cache/
+
+#############
+## OpenCart
+#############
+
+config.php
+public_html/image/cache/*
+public_html/image/catalog/*
+!public_html/image/catalog/site/
+public_html/system/storage/*
