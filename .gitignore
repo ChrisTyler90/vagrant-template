@@ -49,10 +49,7 @@ log*/*
 ## PHPStorm
 #############
 
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/webServers.xml
-.idea/dictionaries/*
+.idea/
 
 #############
 ## SASS/Compass
