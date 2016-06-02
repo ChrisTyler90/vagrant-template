@@ -102,7 +102,7 @@ Vagrant.configure(2) do |config|
     end
     
     config.vm.provision "shell", run: "always" do |s|
-        s.name = "Apache Install"
+        s.name = "Apache Initialisation"
         s.path = "#{current_dir}/build/apache/init.sh"
     end
 
