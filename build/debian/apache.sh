@@ -20,8 +20,8 @@ echo "- Stopping Apache Service"
 sudo service apache2 stop > /dev/null 2>&1
 
 echo "- Configuring Apache"
-sudo sed -i 's/User ${APACHE_RUN_USER}/User $2/g' /etc/apache2/apache2.conf > /dev/null 2>&1
-sudo sed -i 's/Group ${APACHE_RUN_GROUP}/Group $2/g' /etc/apache2/apache2.conf > /dev/null 2>&1
+sudo sed -i "s/User \${APACHE_RUN_USER}/User $2/g" /etc/apache2/apache2.conf > /dev/null 2>&1
+sudo sed -i "s/Group \${APACHE_RUN_GROUP}/Group $2/g" /etc/apache2/apache2.conf > /dev/null 2>&1
 cat << END > /etc/apache2/sites-available/000-default.conf
 <VirtualHost *:80>
     DocumentRoot $3
