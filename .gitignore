@@ -1,8 +1,6 @@
 #############
-## OS
-#############
-
 ## Windows
+#############
 
 $RECYCLE.BIN/
 *.cab
@@ -14,7 +12,9 @@ Desktop.ini
 ehthumbs.db
 Thumbs.db
 
-## OS X
+#############
+## OSX
+#############
 
 Network Trash Folder
 Temporary Items
@@ -33,17 +33,15 @@ Temporary Items
 #############
 
 .vagrant/
-build/mysql/imported-*
+/config.yaml
+/build/mysql/imported-*
 
 #############
 ## Temporary / Cache
 #############
 
-backup/
-cache/
 tmp/*
 log*/*
-*.log
 
 #############
 ## PHPStorm
@@ -52,7 +50,7 @@ log*/*
 .idea/
 
 #############
-## SASS/Compass
+## SASS
 #############
 
 .sass-cache/
@@ -62,7 +60,28 @@ log*/*
 #############
 
 config.php
-public_html/image/cache/*
-public_html/image/catalog/*
-!public_html/image/catalog/site/
-public_html/system/storage/*
+*/image/cache/*
+*/image/catalog/*
+!*/image/catalog/site/
+*/system/storage/*
+
+#############
+## Magento
+#############
+
+public_html/app/etc/local.xml
+public_html/media/
+public_html/var/*
+
+#############
+## Apache
+#############
+
+*/.htaccess
+!*/*/.htaccess
+
+#############
+## Git
+#############
+
+!.gitkeep

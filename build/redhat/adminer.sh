@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [ $1 -ne "1" ]; then
+    exit
+fi
+
 echo "- Installing Adminer"
 sudo mkdir -p /var/www/default/adminer
 # Fetch the latest version of Adminer
@@ -14,3 +18,5 @@ Alias /adminer /var/www/default/adminer
     Allow from all
 </Directory>
 END
+
+sudo service httpd restart > /dev/null 2>&1

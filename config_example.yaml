@@ -47,8 +47,8 @@ config:
             - data.sql
     apache:
         install: '1'
-        user: apache
-        web_root: '/vagrant/www-data'
+        user: vagrant
+        web_root: '/vagrant/public_html'
         log_dir: '/vagrant/logs'
         modules:
             - php
