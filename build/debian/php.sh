@@ -14,7 +14,7 @@ echo " - Installing PHP Modules"
 for module in ${@:3}
 do
     echo "  - $module"
-    sudo apt-get install -y $module > /dev/null 2>&1
+    sudo apt-get install -y php$2-$module > /dev/null 2>&1
     sudo php5enmod $module > /dev/null 2>&1
 done;
 
