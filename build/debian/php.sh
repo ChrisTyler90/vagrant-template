@@ -4,9 +4,7 @@ if [ $1 -ne "1" ]; then
     exit
 fi
 
-sudo apt-get install software-properties-common > /dev/null 2>&1
-sudo apt-get install python-software-properties > /dev/null 2>&1
-sudo add-apt-repository ppa:ondrej/php > /dev/null 2>&1
+sudo add-apt-repository -y ppa:ondrej/php > /dev/null 2>&1
 
 echo "- Installing PHP $2"
 sudo apt-get update > /dev/null 2>&1

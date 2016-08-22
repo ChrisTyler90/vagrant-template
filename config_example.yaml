@@ -22,6 +22,8 @@ config:
             - curl
             - libcurl3
             - libcurl3-dev
+            - python-software-properties
+            - software-properties-common
             - wget
     php:
         install: '1'
