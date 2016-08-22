@@ -43,7 +43,7 @@ Vagrant.configure(2) do |config|
     # Package Manager
     ####################
 
-    config.vm.provision "shell", run: "always" do |s|
+    config.vm.provision "shell", run: "once" do |s|
         s.name = "Package Manager"
         s.path = "#{current_dir}/build/#{os}/package-manager.sh"
     end
@@ -51,7 +51,7 @@ Vagrant.configure(2) do |config|
     # Packages
     ####################
 
-    config.vm.provision "shell", run: "always" do |s|
+    config.vm.provision "shell", run: "once" do |s|
         s.name = "Packages"
         s.path = "#{current_dir}/build/#{os}/package.sh"
         s.args = "#{user_config['server']['packages'].join(' ')}"
@@ -61,7 +61,7 @@ Vagrant.configure(2) do |config|
     # PHP
     ####################
 
-    config.vm.provision "shell", run: "always" do |s|
+    config.vm.provision "shell", run: "once" do |s|
         s.name = "PHP"
         s.path = "#{current_dir}/build/#{os}/php.sh"
         s.args = "#{user_config['php']['install']} #{user_config['php']['version']} #{user_config['php']['modules'].join(' ')}"
@@ -71,7 +71,7 @@ Vagrant.configure(2) do |config|
     # MySQL
     ####################
 
-    config.vm.provision "shell", run: "always" do |s|
+    config.vm.provision "shell", run: "once" do |s|
         s.name = "MySQL"
         s.path = "#{current_dir}/build/#{os}/mysql.sh"
         s.args = "#{user_config['mysql']['install']} #{user_config['mysql']['version']} #{user_config['mysql']['user']} #{user_config['mysql']['pass']} #{user_config['mysql']['db']} #{user_config['mysql']['import'].join(' ')}"
@@ -81,7 +81,7 @@ Vagrant.configure(2) do |config|
     # Apache
     ####################
 
-    config.vm.provision "shell", run: "always" do |s|
+    config.vm.provision "shell", run: "once" do |s|
         s.name = "Apache"
         s.path = "#{current_dir}/build/#{os}/apache.sh"
         s.args = "#{user_config['apache']['install']} #{user_config['apache']['user']} #{user_config['apache']['web_root']} #{user_config['apache']['log_dir']} #{user_config['apache']['modules'].join(' ')}"
@@ -91,7 +91,7 @@ Vagrant.configure(2) do |config|
     # Adminer
     ####################
 
-    config.vm.provision "shell", run: "always" do |s|
+    config.vm.provision "shell", run: "once" do |s|
         s.name = "Adminer"
         s.path = "#{current_dir}/build/#{os}/adminer.sh"
         s.args = "#{user_config['adminer']['install']}"
@@ -101,7 +101,7 @@ Vagrant.configure(2) do |config|
     # FTP
     ####################
 
-    config.vm.provision "shell", run: "always" do |s|
+    config.vm.provision "shell", run: "once" do |s|
         s.name = "FTP"
         s.path = "#{current_dir}/build/#{os}/ftp.sh"
         s.args = "#{user_config['ftp']['install']}"
@@ -111,7 +111,7 @@ Vagrant.configure(2) do |config|
     # Nano
     ####################
 
-    config.vm.provision "shell", run: "always" do |s|
+    config.vm.provision "shell", run: "once" do |s|
         s.name = "Nano"
         s.path = "#{current_dir}/build/#{os}/nano.sh"
     end
