@@ -8,6 +8,7 @@ version_orig=$2
 version_plain=${version_orig//./}
 version_redhat=${version_plain}w
 
+sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm > /dev/null 2>&1
 sudo rpm -Uvh http://mirror.webtatic.com/yum/el6/latest.rpm > /dev/null 2>&1
 
 echo "- Installing PHP $2"
