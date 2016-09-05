@@ -25,11 +25,13 @@ config:
             - python-software-properties
             - software-properties-common
             - wget
+        timezone: 'Europe/London'
     php:
         install: '1'
         version: '5.5'
         modules:
             - common
+            - curl
             - gd
             - mbstring
             - mcrypt
